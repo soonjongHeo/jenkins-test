@@ -24,12 +24,15 @@
 		</repository>
 	</repositories>
 	
+	
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.3.3.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -394,6 +397,8 @@
 			<scope>test</scope>
 		</dependency>        
 	</dependencies>
+	
+	
     <build>
         <plugins>
             <plugin>
@@ -428,7 +433,11 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
-                    <mainClass>org.test.int1.Main</mainClass>
+<!--                     <mainClass>org.test.int1.Main</mainClass> -->
+                    <url>http://localhost:8181/manager/text</url>
+                    <path>/guestbook</path>
+                    <username>soon9086</username>
+                    <password>jong0735!!</password>
                 </configuration>
             </plugin>
         </plugins>
