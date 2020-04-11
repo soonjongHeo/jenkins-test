@@ -130,8 +130,14 @@
 	
 </head>
 <body>
+<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+	<%@ include file="./include/menu.jsp" %>
+</c:if>
+<c:if test="${sessionScope.adminUserid != null}">
+	<%@ include file="./include/admin_menu.jsp" %>
+</c:if>
 <h1>
-	Hello world!  
+	Hello world!
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
