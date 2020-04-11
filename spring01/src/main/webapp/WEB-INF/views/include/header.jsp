@@ -23,7 +23,6 @@
 
 <link rel="stylesheet" href="${path}/resources/css/devexpress/dx.common.css">
 <link rel="stylesheet" href="${path}/resources/css/devexpress/dx.light.css">
-<link rel="stylesheet" href="${path}/resources/fontawesome-free-5.9.0-web/css/font-awesome.min.css">
 <link rel="stylesheet" href="${path}/resources/css/froalaeditor/froala_editor.pkgd.min.css">
 <link rel="stylesheet" href="${path}/resources/css/froalaeditor/froala_style.min.css">
 <link rel="stylesheet" href="${path}/resources/css/froalaeditor/custom-froala.css">
