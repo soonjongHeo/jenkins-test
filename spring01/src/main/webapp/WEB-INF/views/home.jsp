@@ -3,6 +3,7 @@
 <head>
 	<title>Home</title>
 	<%@ include file="./include/header.jsp" %>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f3607534cf9328aa1671a84fac9ab56"></script>
 	<style type="text/css">
 		.dx-datagrid .dx-data-row > td.bullet {
 		    padding-top: 0;
@@ -144,11 +145,10 @@
 	<div class="dx-viewport demo-container">
         <div id="gridContainer"></div>
     </div>
-	
-	<!-- 지도를 표시할 div 입니다 -->
+    
+    <!-- 지도를 표시할 div 입니다 -->
 	<div id="map" style="width:100%;height:350px;"></div>
 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f3607534cf9328aa1671a84fac9ab56"></script>
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
@@ -158,6 +158,6 @@
 	
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	</script>    
+	</script>
 </body>
 </html>
