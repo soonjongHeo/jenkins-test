@@ -71,8 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			NAME
 		FROM
 			ADMIN
-			where USERID = #{userid}
-			and PASSWD = #{passwd}
+			WHERE ADMIN_ID = #{userid}
+			AND PASS_WD = #{passwd}
 	</select>
 </mapper>
 
