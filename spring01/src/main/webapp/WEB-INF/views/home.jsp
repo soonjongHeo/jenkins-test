@@ -136,13 +136,28 @@
 <c:if test="${sessionScope.adminUserid != null}">
 	<%@ include file="./include/admin_menu.jsp" %>
 </c:if>
-<h1>
-	Hello world!
-</h1>
+	<h1>
+		Hello world!
+	</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-<div class="dx-viewport demo-container">
+	<P>  The time on the server is ${serverTime}. </P>
+	<div class="dx-viewport demo-container">
         <div id="gridContainer"></div>
     </div>
+	
+	<!-- 지도를 표시할 div 입니다 -->
+	<div id="map" style="width:100%;height:350px;"></div>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f3607534cf9328aa1671a84fac9ab56"></script>
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };
+	
+	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	</script>    
 </body>
 </html>
