@@ -2,14 +2,14 @@ package com.example.spring01.model.dao;
 
 import java.util.List;
 
-import com.example.spring01.model.dto.MemberDTO;
+import com.example.spring01.model.dto.AdminDTO;
 
 public interface AdminDAO {
-	public List<MemberDTO> memberList();
-	public void insertMember(MemberDTO dto);
-	public MemberDTO viewMember(String userid);
-	public void deleteMember(String userid);
-	public void updateMember(MemberDTO dto);
-	public boolean checkPw(String userid, String passwd);
-	public String loginCheck(MemberDTO dto);
+	public List<AdminDTO> adminList();
+	public void insertAdmin(AdminDTO dto);
+	public AdminDTO viewAdmin(String adminId);
+	public void deleteAdmin(String adminId);
+	public void updateAdmin(AdminDTO dto);
+	public boolean adminCheckPw(String adminId, String passwd);
+	public String adminLoginCheck(AdminDTO dto);
 }

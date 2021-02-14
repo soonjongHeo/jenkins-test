@@ -36,15 +36,15 @@ public class MamberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public MemberDTO viewMember(String userid) {
+	public MemberDTO viewMember(String userId) {
 		logger.info("viewMember called");
-		return sqlSession.selectOne("member.viewMember", userid);
+		return sqlSession.selectOne("member.viewMember", userId);
 	}
 
 	@Override
-	public void deleteMember(String userid) {
+	public void deleteMember(String userId) {
 		logger.info("deleteMember called");
-		sqlSession.insert("member.deleteMember", userid);
+		sqlSession.insert("member.deleteMember", userId);
 	}
 
 	@Override

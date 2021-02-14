@@ -21,7 +21,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		//세션 객체 생성
 		HttpSession session=request.getSession();
 		//세션이 없으면(로그인되지 않은 상태)
-		if(session.getAttribute("userid") == null) {
+		if(session.getAttribute("userId") == null) {
 			//login 페이지로 이동
 			response.sendRedirect(request.getContextPath()
 					+"/member/login.do?message=nologin");

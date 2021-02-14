@@ -13,7 +13,7 @@
 		<table border="1" width="400px">
 			<tr>
 				<td>아이디</td>
-				<td><input name="userid"></td>
+				<td><input name="userId"></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>

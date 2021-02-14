@@ -7,10 +7,10 @@
 	<%@ include file="../include/header.jsp" %>
 </head>
 <body>
-	<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+	<c:if test="${sessionScope.userId != null || sessionScope.adminId == null}">
 	<%@ include file="../include/menu.jsp" %>
 	</c:if>
-	<c:if test="${sessionScope.adminUserid != null}">
+	<c:if test="${sessionScope.adminId != null}">
 	<%@ include file="../include/admin_menu.jsp" %>
 	</c:if>
 	<h2>회원목록</h2>
@@ -24,8 +24,8 @@
 		</tr>
 		<c:forEach var="row" items="${list}">
 		<tr>
-			<td>${row.userid}</td>
-			<td><a href="${path}/member/view.do?userid=${row.userid}">${row.name}</a></td>
+			<td>${row.userId}</td>
+			<td><a href="${path}/member/view.do?userId=${row.userId}">${row.name}</a></td>
 			<td>${row.email}</td>
 			<td><fmt:formatDate value="${row.joinDate}" type="date" dateStyle="full" /></td>
 		</tr>

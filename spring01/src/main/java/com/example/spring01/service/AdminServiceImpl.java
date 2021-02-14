@@ -7,8 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.example.spring01.model.dao.AdminDAO;
-import com.example.spring01.model.dao.MemberDAO;
-import com.example.spring01.model.dto.MemberDTO;
+import com.example.spring01.model.dto.AdminDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -17,38 +16,38 @@ public class AdminServiceImpl implements AdminService {
 	AdminDAO adminDao;
 	
 	@Override
-	public List<MemberDTO> memberList() {
-		return adminDao.memberList();
+	public List<AdminDTO> adminList() {
+		return adminDao.adminList();
 	}
 
 	@Override
-	public void insertMember(MemberDTO dto) {
-		adminDao.insertMember(dto);
+	public void insertAdmin(AdminDTO dto) {
+		adminDao.insertAdmin(dto);
 	}
 
 	@Override
-	public MemberDTO viewMember(String userid) {
-		return adminDao.viewMember(userid);
+	public AdminDTO viewAdmin(String adminId) {
+		return adminDao.viewAdmin(adminId);
 	}
 
 	@Override
-	public void deleteMember(String userid) {
-		adminDao.deleteMember(userid);
+	public void deleteAdmin(String adminId) {
+		adminDao.deleteAdmin(adminId);
 	}
 
 	@Override
-	public void updateMember(MemberDTO dto) {
-		adminDao.updateMember(dto);
+	public void updateAdmin(AdminDTO dto) {
+		adminDao.updateAdmin(dto);
 	}
 
 	@Override
-	public boolean checkPw(String userid, String passwd) {
-		return adminDao.checkPw(userid, passwd);
+	public boolean adminCheckPw(String adminId, String passwd) {
+		return adminDao.adminCheckPw(adminId, passwd);
 	}
 
 	@Override
-	public String loginCheck(MemberDTO dto) {
-		return adminDao.loginCheck(dto);
+	public String adminLoginCheck(AdminDTO dto) {
+		return adminDao.adminLoginCheck(dto);
 	}
 
 }

@@ -52,9 +52,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board/insert.do")
-	public ModelAndView insert(CommandMap commandMap, HttpServletRequest request) throws Exception{
+	public ModelAndView insert(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
 		logger.info("게시판 등록");
 		ModelAndView mv = new ModelAndView("redirect:/board/list.do");
+		String userId = (String) session.getAttribute("userId");
+		commandMap.put("userId",userId);
 		boardService.insertBoard(commandMap.getMap(), request);
 		return mv;
 	}

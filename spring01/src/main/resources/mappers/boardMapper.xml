@@ -27,58 +27,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="boardList" parameterType="hashmap" resultType="hashmap">
 		 
-		SELECT 
-		    AAA.*
-		FROM(
-		    SELECT 
-		        COUNT(*) OVER() AS TOTAL_COUNT,
-		        AA.*
-		    FROM(
-		        SELECT
-		            ROW_NUMBER() OVER (ORDER BY A.IDX DESC) AS RNUM,
-		            A.IDX AS IDX,
-		            A.TITLE AS TITLE,
-		            B.NAME AS NAME,
-		            A.HIT_CNT AS HIT_CNT,
-		            A.CREA_DTM AS CREA_DTM
-		        FROM
-		            TB_BOARD A, MEMBER B 
-		    	WHERE A.CREA_ID = B.USERID
-		    	AND A.DEL_GB = 'N'
-		    	<include refid="search" />
-		    ) AA
-		) AAA
-		WHERE 
-		    AAA.RNUM BETWEEN #{START} AND #{END}
-		ORDER BY AAA.IDX DESC	
+		SELECT  A.* FROM(
+			SELECT FOUND_ROWS() AS TOTAL_COUNT,
+				 A.IDX,  A.TITLE, B.NAME,
+				 A.HIT_CNT, A.CREAT_DTM FROM  
+				 TB_BOARD A, MEMBER B  WHERE A.USER_ID = B.USER_ID
+				 AND A.DEL_GB = 'N'  
+				 ORDER BY  A.IDX DESC
+			) A WHERE 1=1
+		    <include refid="search" /> 
+		LIMIT #{START}, #{END} 	
 		 
 	</select>
 	
-	<insert id="insertBoard" parameterType="hashmap" 
-		useGeneratedKeys="true" keyProperty="IDX">
-		<selectKey keyProperty="IDX" resultType="string" order="BEFORE"> 
-			SELECT SEQ_TB_BOARD_IDX.NEXTVAL FROM DUAL 
-		</selectKey>
+	<insert id="insertBoard" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO TB_BOARD
 			(
-				IDX,
 			    TITLE, 
 			    CONTENTS, 
 			    HIT_CNT, 
 			    DEL_GB, 
-			    CREA_DTM, 
-			    CREA_ID
+			    CREAT_DTM, 
+			    USER_ID
 			)
 			VALUES
 			(
-				#{IDX}, 
 			    #{TITLE}, 
 			    #{CONTENTS}, 
 			    0, 
 			    'N', 
-			    SYSDATE, 
-			    'Admin'
+			    NOW(), 
+			    #{userId}
 			)
 		]]>
 	</insert>
@@ -86,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			UPDATE TB_BOARD 
 			SET
-				HIT_CNT = NVL(HIT_CNT, 0) + 1
+				HIT_CNT = ifnull(HIT_CNT, 0) + 1
 			WHERE
 				IDX = #{IDX}	
 		]]>
@@ -97,14 +77,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT
 				IDX,
 				HIT_CNT,
-				CREA_ID,
-				CREA_DTM,
+				USER_ID,
+				CREAT_DTM,
 				TITLE,
 				CONTENTS
 			FROM
 				TB_BOARD
 			WHERE
-				IDX = #{IDX}		
+				IDX = #{IDX}
 		]]>
 	</select>
 	<update id="updateBoard" parameterType="hashmap">
@@ -130,21 +110,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			INSERT INTO TB_FILE
 			(
-				IDX,
 				BOARD_IDX,
 				ORIGINAL_FILE_NAME,
 				STORED_FILE_NAME,
 				FILE_SIZE,
-				CREA_ID
+				CREAT_DTM
 			)
 			VALUES
 			(
-				SEQ_TB_FILE_IDX.NEXTVAL,
 				#{BOARD_IDX},
 				#{ORIGINAL_FILE_NAME},
 				#{STORED_FILE_NAME},
 				#{FILE_SIZE},
-				'Admin'
+				NOW()
 			)
 		]]>
 	</insert>

@@ -48,9 +48,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("member/view.do")
-	public String view(@RequestParam String userid, Model model) {
+	public String view(@RequestParam String userId, Model model) {
 		logger.info("회원 상세");
-		MemberDTO viewMember = memberService.viewMember(userid);
+		MemberDTO viewMember = memberService.viewMember(userId);
 		model.addAttribute("viewMember", viewMember);
 		return "member/view";
 	}
@@ -58,12 +58,12 @@ public class MemberController {
 	@RequestMapping("member/update.do")
 	public String update(@ModelAttribute MemberDTO dto, Model model) {
 		logger.info("회원 수정");
-		boolean result = memberService.checkPw(dto.getUserid(), dto.getPasswd());
+		boolean result = memberService.checkPw(dto.getUserId(), dto.getPasswd());
 		if(result) {
 			memberService.updateMember(dto);
 			return "redirect:/member/list.do";
 		}else {
-			MemberDTO viewMember = memberService.viewMember(dto.getUserid());
+			MemberDTO viewMember = memberService.viewMember(dto.getUserId());
 			dto.setJoinDate(viewMember.getJoinDate());
 			model.addAttribute("viewMember", dto);
 			model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
@@ -72,15 +72,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping("member/delete.do")
-	public String delete(@RequestParam String userid, @RequestParam String passwd,
+	public String delete(@RequestParam String userId, @RequestParam String passwd,
 			Model model) {
 		logger.info("회원 삭제");
-		boolean result = memberService.checkPw(userid, passwd);
+		boolean result = memberService.checkPw(userId, passwd);
 		if(result) {
-			memberService.deleteMember(userid);
+			memberService.deleteMember(userId);
 			return "redirect:/member/list.do";
 		}else {
-			model.addAttribute("viewMember", memberService.viewMember(userid));
+			model.addAttribute("viewMember", memberService.viewMember(userId));
 			model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
 			return "member/view";
 		} 
@@ -97,12 +97,12 @@ public class MemberController {
 		logger.info("로그인check");
 		String name = memberService.loginCheck(dto);
 		if(name != null) {
-			session.setAttribute("userid", dto.getUserid());
+			session.setAttribute("userId", dto.getUserId());
 			session.setAttribute("name", name);
 			mav.setViewName("main");
 			mav.addObject("message", "success");
 			System.out.println("message: success");
-			System.out.println("dto.getUserid(): " + dto.getUserid());
+			System.out.println("dto.getUserId(): " + dto.getUserId());
 		}else {
 			System.out.println("message: error");
 			mav.setViewName("member/login");

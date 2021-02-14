@@ -12,8 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.example.spring01.model.dao.AdminDAO;
-import com.example.spring01.model.dao.MemberDAO;
-import com.example.spring01.model.dto.MemberDTO;
+import com.example.spring01.model.dto.AdminDTO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO{
@@ -25,43 +24,43 @@ public class AdminDAOImpl implements AdminDAO{
 	SqlSession sqlSession;
 	
 	@Override
-	public List<MemberDTO> memberList() {
-		logger.info("memberList called");
-		return sqlSession.selectList("member.memberList");
+	public List<AdminDTO> adminList() {
+		logger.info("adminList called");
+		return sqlSession.selectList("admin.adminList");
 	}
 
 	@Override
-	public void insertMember(MemberDTO dto) {
-		logger.info("insertMember called");
-		sqlSession.insert("member.insertMember", dto);
+	public void insertAdmin(AdminDTO dto) {
+		logger.info("insertAdmin called");
+		sqlSession.insert("admin.insertAdmin", dto);
 	}
 
 	@Override
-	public MemberDTO viewMember(String userid) {
-		logger.info("viewMember called");
-		return sqlSession.selectOne("member.viewMember", userid);
+	public AdminDTO viewAdmin(String adminId) {
+		logger.info("viewAdmin called");
+		return sqlSession.selectOne("admin.viewAdmin", adminId);
 	}
 
 	@Override
-	public void deleteMember(String userid) {
-		logger.info("deleteMember called");
-		sqlSession.insert("member.deleteMember", userid);
+	public void deleteAdmin(String adminId) {
+		logger.info("deleteAdmin called");
+		sqlSession.insert("admin.deleteAdmin", adminId);
 	}
 
 	@Override
-	public void updateMember(MemberDTO dto) {
-		logger.info("updateMember called");
-		sqlSession.insert("member.updateMember", dto);
+	public void updateAdmin(AdminDTO dto) {
+		logger.info("updateAdmin called");
+		sqlSession.insert("admin.updateAdmin", dto);
 	}
 
 	@Override
-	public boolean checkPw(String userid, String passwd) {
-		logger.info("checkPw called");
+	public boolean adminCheckPw(String adminId, String passwd) {
+		logger.info("adminCheckPw called");
 		boolean result = false;
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("userid", userid);
+		map.put("adminId", adminId);
 		map.put("passwd", passwd);
-		int count = sqlSession.selectOne("member.checkPw", map);
+		int count = sqlSession.selectOne("admin.adminCheckPw", map);
 		if(count == 1) {
 			result = true;
 		}
@@ -69,9 +68,9 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 
 	@Override
-	public String loginCheck(MemberDTO dto) {
-		logger.info("Admin loginCheck called");
-		return sqlSession.selectOne("admin.loginCheck", dto);
+	public String adminLoginCheck(AdminDTO dto) {
+		logger.info("adminLoginCheck called");
+		return sqlSession.selectOne("admin.adminLoginCheck", dto);
 	}
 
 }

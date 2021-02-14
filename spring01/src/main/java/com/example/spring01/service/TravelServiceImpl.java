@@ -27,9 +27,8 @@ public class TravelServiceImpl implements TravelService {
 	}
 
 	@Override
-	public TravelDTO viewTravel(String travelId) {
-		// TODO Auto-generated method stub
-		return null;
+	public TravelDTO travelDetail(int travelId) {
+		return travelDao.travelDetail(travelId);
 	}
 
 	@Override

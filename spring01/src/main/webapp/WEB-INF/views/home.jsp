@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -131,10 +132,10 @@
 	
 </head>
 <body>
-<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+<c:if test="${sessionScope.userId != null || sessionScope.adminId == null}">
 	<%@ include file="./include/menu.jsp" %>
 </c:if>
-<c:if test="${sessionScope.adminUserid != null}">
+<c:if test="${sessionScope.adminId != null}">
 	<%@ include file="./include/admin_menu.jsp" %>
 </c:if>
 	<h1>

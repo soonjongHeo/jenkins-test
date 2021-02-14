@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member">
 	<select id="memberList" resultType="memberDTO">
 		SELECT
-			USERID,
-			PASSWD,
+			USER_ID as userId,
+			PASS_WD as passwd,
 			NAME,
 			EMAIL,
 			DATE_FORMAT(JOIN_DATE,'%Y%m%d%H%i%s') AS joinDate
@@ -19,13 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertMember">
 		INSERT INTO MEMBER (
-			USERID,
-			PASSWD,
+			USER_ID,
+			PASS_WD,
 			NAME,
 			EMAIL
 			)
 			VALUES(
-			#{userid},
+			#{userId},
 			#{passwd},
 			#{name},
 			#{email}
@@ -34,14 +34,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="viewMember" resultType="memberDTO">
 		SELECT
-			USERID,
-			PASSWD,
+			USER_ID as userId,
+			PASS_WD as passwd,
 			NAME,
 			EMAIL,
 			DATE_FORMAT(JOIN_DATE,'%Y%m%d%H%i%s') AS joinDate
 		FROM
 			MEMBER
-			where USERID = #{userid}
+			where USER_ID = #{userId}
 	</select>
 	
 	<select id="checkPw" resultType="int">
@@ -49,21 +49,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			COUNT(*)
 		FROM
 			MEMBER
-			where USERID = #{userid}
-			and PASSWD = #{passwd}
+			where USER_ID = #{userId}
+			and PASS_WD = #{passwd}
 	</select>
 	
 	<update id="updateMember">
 		update MEMBER
-		set PASSWD = #{passwd}
+		set PASS_WD = #{passwd}
 		,NAME = #{name}
 		,EMAIL = #{email}
-		where USERID = #{userid}
+		where USER_ID = #{userId}
 	</update>
 	
 	<delete id="deleteMember">
 		delete from MEMBER
-		where USERID = #{userid}
+		where USER_ID = #{userId}
 	</delete>
 	
 	<select id="loginCheck" resultType="String">
@@ -71,8 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			NAME
 		FROM
 			MEMBER
-			where USERID = #{userid}
-			and PASSWD = #{passwd}
+			where USER_ID = #{userId}
+			and PASS_WD = #{passwd}
 	</select>
 </mapper>
 

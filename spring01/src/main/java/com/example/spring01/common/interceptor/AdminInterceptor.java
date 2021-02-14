@@ -21,7 +21,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		//세션 객체 생성
 		HttpSession session=request.getSession();
 		//세션변수에 adminUserid없으면(로그인되지 않은 상태)
-		if(session.getAttribute("adminUserid") == null) {
+		if(session.getAttribute("adminId") == null) {
 			//login 페이지로 이동
 			response.sendRedirect(request.getContextPath()
 					+"/admin/login.do?message=nologin");

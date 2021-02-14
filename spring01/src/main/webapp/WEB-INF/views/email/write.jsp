@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>이메일 보내기</title>
 <%@ include file="../include/header.jsp" %>
-<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+<c:if test="${sessionScope.userId != null || sessionScope.adminId == null}">
 	<script>
 		alert("로그인 하신 후 사용하세요.");
 		location.href="${path}/admin/login.do";
@@ -14,10 +14,10 @@
 </c:if>
 </head>
 <body>
-	<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+	<c:if test="${sessionScope.userId != null || sessionScope.adminId == null}">
 	<%@ include file="../include/menu.jsp" %>
 	</c:if>
-	<c:if test="${sessionScope.adminUserid != null}">
+	<c:if test="${sessionScope.adminId != null}">
 	<%@ include file="../include/admin_menu.jsp" %>
 	</c:if>
 	<h2>이메일 보내기</h2>

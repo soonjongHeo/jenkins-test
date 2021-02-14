@@ -7,10 +7,10 @@
 	<%@ include file="../include/header.jsp" %>
 </head>
 <body>
-	<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+	<c:if test="${sessionScope.userId != null || sessionScope.adminId == null}">
 	<%@ include file="../include/menu.jsp" %>
 	</c:if>
-	<c:if test="${sessionScope.adminUserid != null}">
+	<c:if test="${sessionScope.adminId != null}">
 	<%@ include file="../include/admin_menu.jsp" %>
 	</c:if>
 	<h2>상품목록</h2>

@@ -8,11 +8,11 @@
 	<script type="text/javascript">
 		$(function(){
 			$("#btnLogin").click(function(){
-				var userid = $("#userid").val();
+				var adminId = $("#adminId").val();
 				var passwd = $("#passwd").val();
-				if(userid == "") {
+				if(adminId == "") {
 					alert("아이디를 입력하세요.");
-					$("#userid").focus();
+					$("#adminId").focus();
 					return;
 				}
 				if(passwd == "") {
@@ -34,7 +34,7 @@
 		<table border="1" width="400px">
 			<tr>
 				<td>아이디</td>
-				<td><input id="userid" name="userid"></td>
+				<td><input id="adminId" name="adminId"></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>

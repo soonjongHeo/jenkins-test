@@ -18,11 +18,11 @@
 
 <div style="text-aling: right;">
 <c:choose>
-	<c:when test="${sessionScope.adminUserid == null}">
+	<c:when test="${sessionScope.adminId == null}">
 		<a href="/admin/login.do">관리자 로그인</a>
 	</c:when>
 	<c:otherwise>
-		${sessionScope.adminName}님이 로그인중입니다.
+		${sessionScope.name}님이 로그인중입니다.
 		<a href="/admin/logout.do">로그아웃</a>
 	</c:otherwise>
 </c:choose>	

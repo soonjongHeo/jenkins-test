@@ -49,7 +49,7 @@ $(function(){
 								value="${row.cartId}"></td>
 					<td>${row.money}</td>
 					<td>
-<c:if test="${sessionScope.userid != null}">
+<c:if test="${sessionScope.userId != null}">
 
 					<a href=
 "${path}/shop/cart/delete.do?cartId=${row.cartId}">삭제</a>

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="travel">
-	<select id="travelList" resultType="travelDto">
+	<select id="travelList" resultType="travelDTO">
 		SELECT
 			TRAVEL_ID AS travelId,
 			TRAVEL_NAME AS travelName,
@@ -21,24 +21,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="travelInsert">
 		INSERT INTO TRAVEL (
-		TRAVEL_ID,
 		TRAVEL_NAME,
 		TRAVEL_DATE,
 		TRAVEL_ADDRESS,
 		TRAVEL_LATITUDE,
 		TRAVEL_LONGITUDE,
-		REG_DT,
-		UPD_DT)
+		REG_DT
+		)
 	VALUES(
-	TRAVELID.NEXTVAL,
 	#{travelName},
 	#{travelDate},
 	#{travelAddress},
 	#{travelLatitude},
 	#{travelLongitude},
-	SYSDATE,
-	'')
+	NOW()
+	)
 	</insert>
+	
+	<select id="travelDetail" resultType="travelDTO">
+		SELECT
+			TRAVEL_ID AS travelId,
+			TRAVEL_NAME AS travelName,
+			TRAVEL_DATE AS travelDate,
+			TRAVEL_ADDRESS AS travelAddress,
+			TRAVEL_LATITUDE AS travelLatitude,
+			TRAVEL_LONGITUDE AS travelLongitude,
+			DATE_FORMAT(REG_DT,'%Y-%m-%d %H:%i:%s') AS regDt,
+			DATE_FORMAT(UPD_DT,'%Y-%m-%d %H:%i:%s') AS updDt 
+		FROM
+			TRAVEL
+			where TRAVEL_ID = #{travelId}
+	</select>
 </mapper>
 
 

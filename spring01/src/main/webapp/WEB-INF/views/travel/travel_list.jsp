@@ -114,10 +114,10 @@
 	<header>
 	</header>
 	<nav>
-		<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+		<c:if test="${sessionScope.userId != null || sessionScope.adminId == null}">
 		<%@ include file="../include/menu.jsp" %>
 		</c:if>
-		<c:if test="${sessionScope.adminUserid != null}">
+		<c:if test="${sessionScope.adminId != null}">
 		<%@ include file="../include/admin_menu.jsp" %>
 		</c:if>
 	</nav>
@@ -138,7 +138,7 @@
 			<c:forEach var="list" items="${travelList}">
 				<tr>
 					<td>${list.travelId}</td>
-					<td><a href="${path}/travel/view.do?travelId=${list.travelId}">
+					<td><a href="${path}/travel/detail.do?travelId=${list.travelId}">
 					${list.travelName}</a></td>
 					<td>${list.travelDate}</td>
 					<td>${list.travelAddress}</td>

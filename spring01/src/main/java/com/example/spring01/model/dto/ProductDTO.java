@@ -9,6 +9,7 @@ public class ProductDTO {
 	private String description;
 	private String pictureUrl;
 	private MultipartFile file1;
+	private String registDate;
 	
 	public int getProductId() {
 		return productId;
@@ -45,6 +46,12 @@ public class ProductDTO {
 	}
 	public void setFile1(MultipartFile file1) {
 		this.file1 = file1;
+	}
+	public String getRegistDate() {
+		return registDate;
+	}
+	public void setRegistDate(String registDate) {
+		this.registDate = registDate;
 	}
 	@Override
 	public String toString() {

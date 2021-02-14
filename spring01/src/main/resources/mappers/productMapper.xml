@@ -11,7 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			PRODUCT_NAME AS productName,
 			PRICE AS price,
 			DESCRIPTION AS description,
-			PICTURE_URL AS pictureUrl
+			PICTURE_URL AS pictureUrl,
+			REGIST_DATE AS registDate
 		FROM
 			PRODUCT 
 		ORDER BY PRODUCT_ID DESC	
@@ -19,18 +20,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="productInsert">
 		INSERT INTO PRODUCT (
-			PRODUCT_ID,
 			PRODUCT_NAME,
 			PRICE,
 			DESCRIPTION,
-			PICTURE_URL
+			PICTURE_URL,
+			REGIST_DATE
 			)
 			VALUES(
-			SEQ_PRODUCT.NEXTVAL,
 			#{productName},
 			#{price},
 			#{description},
-			#{pictureUrl}
+			#{pictureUrl},
+			NOW()
 			)
 	</insert>
 	

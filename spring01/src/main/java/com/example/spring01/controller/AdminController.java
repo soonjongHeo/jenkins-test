@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.spring01.model.dto.MemberDTO;
+import com.example.spring01.model.dto.AdminDTO;
 import com.example.spring01.service.AdminService;
 
 @Controller
@@ -29,7 +29,7 @@ public class AdminController {
 	@RequestMapping("admin/list.do")
 	public String list(Model model) {
 		logger.info("관리자 목록");
-		List<MemberDTO> list = adminService.memberList();
+		List<AdminDTO> list = adminService.adminList();
 		model.addAttribute("list", list);
 		return "admin/list";
 	}
@@ -41,46 +41,46 @@ public class AdminController {
 	}
 	
 	@RequestMapping("admin/insert.do")
-	public String insert(@ModelAttribute MemberDTO dto) {
+	public String insert(@ModelAttribute AdminDTO dto) {
 		logger.info("관리자 등록");
-		adminService.insertMember(dto);
+		adminService.insertAdmin(dto);
 		return "redirect:/admin/list.do";
 	}
 	
 	@RequestMapping("admin/view.do")
-	public String view(@RequestParam String userid, Model model) {
+	public String view(@RequestParam String adminId, Model model) {
 		logger.info("관리자 상세");
-		MemberDTO viewMember = adminService.viewMember(userid);
-		model.addAttribute("viewMember", viewMember);
+		AdminDTO viewAdmin = adminService.viewAdmin(adminId);
+		model.addAttribute("viewAdmin", viewAdmin);
 		return "admin/view";
 	}
 	
 	@RequestMapping("admin/update.do")
-	public String update(@ModelAttribute MemberDTO dto, Model model) {
+	public String update(@ModelAttribute AdminDTO dto, Model model) {
 		logger.info("관리자 수정");
-		boolean result = adminService.checkPw(dto.getUserid(), dto.getPasswd());
+		boolean result = adminService.adminCheckPw(dto.getAdminId(), dto.getPasswd());
 		if(result) {
-			adminService.updateMember(dto);
+			adminService.updateAdmin(dto);
 			return "redirect:/admin/list.do";
 		}else {
-			MemberDTO viewMember = adminService.viewMember(dto.getUserid());
-			dto.setJoinDate(viewMember.getJoinDate());
-			model.addAttribute("viewMember", dto);
+			AdminDTO viewAdmin = adminService.viewAdmin(dto.getAdminId());
+			dto.setJoinDate(viewAdmin.getJoinDate());
+			model.addAttribute("viewAdmin", dto);
 			model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
 			return "admin/view";
 		} 
 	}
 	
 	@RequestMapping("admin/delete.do")
-	public String delete(@RequestParam String userid, @RequestParam String passwd,
+	public String delete(@RequestParam String adminId, @RequestParam String passwd,
 			Model model) {
 		logger.info("관리자 삭제");
-		boolean result = adminService.checkPw(userid, passwd);
+		boolean result = adminService.adminCheckPw(adminId, passwd);
 		if(result) {
-			adminService.deleteMember(userid);
+			adminService.deleteAdmin(adminId);
 			return "redirect:/admin/list.do";
 		}else {
-			model.addAttribute("viewMember", adminService.viewMember(userid));
+			model.addAttribute("viewAdmin", adminService.viewAdmin(adminId));
 			model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
 			return "admin/view";
 		} 
@@ -93,12 +93,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping("admin/loginCheck.do")
-	public ModelAndView loginCheck(MemberDTO dto, HttpSession session, ModelAndView mav) {
+	public ModelAndView loginCheck(AdminDTO dto, HttpSession session, ModelAndView mav) {
 		logger.info("관리자로그인check");
-		String name = adminService.loginCheck(dto);
+		String name = adminService.adminLoginCheck(dto);
 		if(name != null) {
-			session.setAttribute("adminUserid", dto.getUserid());
-			session.setAttribute("adminName", name);
+			session.setAttribute("adminId", dto.getAdminId());
+			session.setAttribute("name", name);
 			mav.setViewName("admin/admin");
 			mav.addObject("message", "success");
 		}else {

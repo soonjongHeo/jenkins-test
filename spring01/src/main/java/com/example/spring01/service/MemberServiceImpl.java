@@ -26,13 +26,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO viewMember(String userid) {
-		return memberDao.viewMember(userid);
+	public MemberDTO viewMember(String userId) {
+		return memberDao.viewMember(userId);
 	}
 
 	@Override
-	public void deleteMember(String userid) {
-		memberDao.deleteMember(userid);
+	public void deleteMember(String userId) {
+		memberDao.deleteMember(userId);
 	}
 
 	@Override

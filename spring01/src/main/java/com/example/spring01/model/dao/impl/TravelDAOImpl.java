@@ -34,9 +34,9 @@ public class TravelDAOImpl implements TravelDAO {
 	}
 
 	@Override
-	public TravelDTO viewTravel(String travelId) {
-		// TODO Auto-generated method stub
-		return null;
+	public TravelDTO travelDetail(int travelId) {
+		logger.info("travelDetail called...");
+		return sqlSession.selectOne("travel.travelDetail", travelId);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,7 +37,6 @@ public class TravelController {
 	@RequestMapping(value = "/travel.do", method = RequestMethod.GET)
 	public ModelAndView travel() {
 		logger.info("travel Page");
-		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("travel", "aaa");
 		
@@ -45,7 +46,6 @@ public class TravelController {
 	@RequestMapping(value = "/travel/list.do")
 	public String travelList(Model model) {
 		logger.info("travelList Page");
-		
 		List<TravelDTO> travelList = travelService.travelList();
 		model.addAttribute("travelList", travelList);
 		
@@ -62,9 +62,26 @@ public class TravelController {
 	@RequestMapping(value = "/travel/insert.do")
 	public String travelInsert(@ModelAttribute TravelDTO dto) {
 		logger.info("travelInsert Page");
-		
 		travelService.travelInsert(dto);
 		
 		return "redirect:/travel/list.do";
+	}
+	
+	@RequestMapping("travel/detail.do")
+	public String detail(@RequestParam int travelId, Model model) {
+		logger.info("travelDetail Page");
+		TravelDTO detail = travelService.travelDetail(travelId);
+		model.addAttribute("detail", detail);
+		return "travel/travel_detail";
+	}
+	
+	@RequestMapping(value="travel/updateP.do")
+	public ModelAndView updateP(@RequestParam int travelId, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("/travel/travel_update");
+		
+		TravelDTO detail = travelService.travelDetail(travelId);
+		mv.addObject("detail", detail);
+		
+		return mv;
 	}
 }

@@ -15,7 +15,7 @@
 
 <div style="text-aling: right;">
 <c:choose>
-	<c:when test="${sessionScope.userid == null}">
+	<c:when test="${sessionScope.userId == null}">
 		<a href="/member/login.do">로그인</a> | 
 		<a href="/admin/login.do">관리자 로그인</a>
 	</c:when>

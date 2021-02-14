@@ -5,73 +5,73 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="admin">
-	<select id="memberList" resultType="memberDTO">
+	<select id="adminList" resultType="adminDTO">
 		SELECT
-			USERID,
-			PASSWD,
+			ADMIN_ID as adminId,
+			PASS_WD as passwd,
 			NAME,
 			EMAIL,
-			TO_CHAR(JOIN_DATE,'YYYY-MM-DD HH24:MI:SS') AS joinDate 
+			JOIN_DATE AS joinDate 
 		FROM
-			MEMBER 
+			ADMIN 
 		ORDER BY NAME	
 	</select>
 	
-	<insert id="insertMember">
-		INSERT INTO MEMBER (
-			USERID,
-			PASSWD,
+	<insert id="insertAdmin">
+		INSERT INTO ADMIN (
+			ADMIN_ID,
+			PASS_WD,
 			NAME,
 			EMAIL
 			)
 			VALUES(
-			#{userid},
+			#{adminId},
 			#{passwd},
 			#{name},
 			#{email}
 			)
 	</insert>
 	
-	<select id="viewMember" resultType="memberDTO">
+	<select id="viewAdmin" resultType="adminDTO">
 		SELECT
-			USERID,
-			PASSWD,
+			ADMIN_ID as adminId,
+			PASS_WD as passwd,
 			NAME,
 			EMAIL,
-			TO_CHAR(JOIN_DATE,'YYYY-MM-DD HH24:MI:SS') AS joinDate 
+			JOIN_DATE AS joinDate 
 		FROM
-			MEMBER
-			where USERID = #{userid}
+			ADMIN
+			where ADMIN_ID = #{adminId}
 	</select>
 	
-	<select id="checkPw" resultType="int">
+	<select id="adminCheckPw" resultType="int">
 		SELECT
 			COUNT(*)
 		FROM
-			MEMBER
-			where USERID = #{userid}
-			and PASSWD = #{passwd}
+			ADMIN
+			where ADMIN_ID = #{adminId}
+			and PASS_WD = #{passwd}
 	</select>
 	
-	<update id="updateMember">
-		update MEMBER
-		set PASSWD = #{passwd}
+	<update id="updateAdmin">
+		update ADMIN
+		set PASS_WD = #{passwd}
 		,NAME = #{name}
 		,EMAIL = #{email}
-		where USERID = #{userid}
+		where ADMIN_ID = #{adminId}
 	</update>
 	
-	<delete id="deleteMember">
-		delete from MEMBER
-		where USERID = #{userid}
+	<delete id="deleteAdmin">
+		delete from ADMIN
+		where ADMIN_ID = #{adminId}
 	</delete>
 	
-	<select id="loginCheck" resultType="String">
+	<select id="adminLoginCheck" resultType="String">
 		SELECT
 			NAME
 		FROM
 			ADMIN
-			WHERE ADMIN_ID = #{userid}
+			WHERE ADMIN_ID = #{adminId}
 			AND PASS_WD = #{passwd}
 	</select>
 </mapper>

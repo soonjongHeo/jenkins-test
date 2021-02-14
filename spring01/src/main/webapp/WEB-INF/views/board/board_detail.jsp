@@ -8,10 +8,10 @@
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
-	<c:if test="${sessionScope.userid != null || sessionScope.adminUserid == null}">
+	<c:if test="${sessionScope.userId != null || sessionScope.adminId == null}">
 	<%@ include file="../include/menu.jsp" %>
 	</c:if>
-	<c:if test="${sessionScope.adminUserid != null}">
+	<c:if test="${sessionScope.adminId != null}">
 	<%@ include file="../include/admin_menu.jsp" %>
 	</c:if>
 	<h2>게시판 상세</h2>
@@ -58,7 +58,9 @@
 	<br/>
 	
 	<a href="#this" class="btn" id="list">목록으로</a>
+	<c:if test="${sessionScope.userId != null || sessionScope.adminId != null}">
 	<a href="#this" class="btn" id="update">수정하기</a>
+	</c:if>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){

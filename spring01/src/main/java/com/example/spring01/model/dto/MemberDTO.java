@@ -3,17 +3,17 @@ package com.example.spring01.model.dto;
 import java.util.Date;
 
 public class MemberDTO {
-	private String userid;
+	private String userId;
 	private String passwd;
 	private String name;
 	private String email;
 	private Date joinDate;
 	
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getPasswd() {
 		return passwd;
@@ -45,7 +45,7 @@ public class MemberDTO {
 	
 	@Override
 	public String toString() {
-		return "MemberDTO [userid=" + userid + ", passwd=" + passwd + ", name=" + name + ", email=" + email
+		return "MemberDTO [userId=" + userId + ", passwd=" + passwd + ", name=" + name + ", email=" + email
 				+ ", joinDate=" + joinDate + "]";
 	}
 	
